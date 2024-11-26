@@ -51,47 +51,46 @@
 ---
 
 ## セットアップ方法
-1. リポジトリをクローンする。
+1.リポジトリをクローンする
    リポジトリを GitHub からローカルにコピーします。
    以下のどちらかを選んでコマンドを実行してください。
 
    - **HTTPSを使用する場合**:
      ```bash
-     git clone https://github.com/your-username/ability-test.git
+     git clone https://github.com/shimodum/ability-test.git
      ```
 
    - **SSHを使用する場合**:
      ```bash
-     git clone git@github.com:your-username/ability-test.git
+     git clone git@github.com:shimodum/ability-test.git
      ```
    **クローン後、プロジェクトディレクトリに移動します**:
      ```bash
      cd contact-form
    
-2.　Docker コンテナを起動する。
-　　Docker Compose を使用して必要なサービスを立ち上げます。
-　　初回起動や Dockerfile に変更があった場合には、以下のコマンドを実行してコンテナをビルドし直
-　　します。
+2.Docker コンテナを起動する  
+　　Docker Compose を使用して必要なサービスを立ち上げます。  
+   初回起動や Dockerfile に変更があった場合には、以下のコマンドを実行してコンテナをビルドし直します。
 
 　　docker-compose up -d --build
    
-3. 依存関係をインストールする。
+3.依存関係をインストールする  
  　 PHP コンテナ内で Composer を使ってライブラリをインストールします。
 
     docker-compose exec php composer install
  
-4. 環境変数を設定する。
+4.環境変数を設定する  
 　 環境設定ファイル .env.example を .env にコピーし、アプリケーションの秘密鍵を生成します。
 
    cp .env.example .env
 　 php artisan key:generate
 
-5. データベースをマイグレートする。 
+5.データベースをマイグレートする  
    アプリケーションで使用するデータベースのテーブルを作成します。
    
    docker-compose exec php php artisan migrate
    
-6. データをシーディングする。
+6.データをシーディングする  
 　 必要な初期データをデータベースに投入します。
 
 　　docker-compose exec php php artisan db:seed
