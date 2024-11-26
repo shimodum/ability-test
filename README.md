@@ -53,17 +53,12 @@
 ## セットアップ方法
 1.リポジトリをクローンする
    リポジトリを GitHub からローカルにコピーします。
-   以下のどちらかを選んでコマンドを実行してください。
 
-   - **HTTPSを使用する場合**:
+   - 
      ```bash
      git clone https://github.com/shimodum/ability-test.git
      ```
 
-   - **SSHを使用する場合**:
-     ```bash
-     git clone git@github.com:shimodum/ability-test.git
-     ```
    **クローン後、プロジェクトディレクトリに移動します**:
      ```bash
      cd contact-form
@@ -82,7 +77,7 @@
 4.環境変数を設定する  
 　 環境設定ファイル .env.example を .env にコピーし、アプリケーションの秘密鍵を生成します。
 
-   cp .env.example .env
+   cp .env.example .env  
 　 php artisan key:generate
 
 5.データベースをマイグレートする  
