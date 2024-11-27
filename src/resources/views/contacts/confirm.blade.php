@@ -15,7 +15,7 @@
 
     <main>
         <h2>Confirm</h2>
-        <form action="/thanks" method="post">
+        <form action="/store" method="post">
             @csrf
             <table>
                 <tr>
@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <th>性別</th>
-                    <td>{{ $inputs['gender'] == 1 ? '男性' : ($inputs['gender'] == 2 ? '女性' : 'その他') }}</td>
+                    <td>{{ $genders[$inputs['gender']] }}</td>
                 </tr>
                 <tr>
                     <th>メールアドレス</th>
@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <th>電話番号</th>
-                    <td>{{ $inputs['tel'] }}</td>
+                    <td>{{ $inputs['tel1'] }}-{{ $inputs['tel2'] }}-{{ $inputs['tel3'] }}</td>
                 </tr>
                 <tr>
                     <th>住所</th>
@@ -51,21 +51,11 @@
                     <td>{{ $inputs['message'] }}</td>
                 </tr>
             </table>
-
             <button type="submit">送信</button>
         </form>
 
-        <a href="/" onclick="event.preventDefault(); document.getElementById('edit-form').submit();">修正</a>
-        <form action="/" method="post" style="display: inline;">
-            @csrf
-            @foreach ($inputs as $key => $value)
-            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-            @endforeach
-            <button type="submit" style="background: none; border: none; padding: 0; color: blue; text-decoration: underline; cursor: pointer;">
-                修正
-            </button>
-        </form>
-
+        <!-- 修正リンク -->
+        <a href="{{ url('/') }}?{{ http_build_query($inputs) }}" style="text-decoration: underline; color: blue;">修正</a>
     </main>
 </body>
 
