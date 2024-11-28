@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Fortify\Fortify;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
+
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
     }
 }

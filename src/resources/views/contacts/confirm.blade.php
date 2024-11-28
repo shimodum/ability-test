@@ -15,7 +15,8 @@
 
     <main>
         <h2>Confirm</h2>
-        <form action="/store" method="post">
+        {{ dd(request()->method()) }}
+        <form action="{{ url('/store') }}" method="post">
             @csrf
             <table>
                 <tr>
