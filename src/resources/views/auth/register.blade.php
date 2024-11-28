@@ -46,7 +46,7 @@
 
     <div class="container">
         <h1>Register</h1>
-        <form action="{{ route('register') }}" method="POST" novalidate>
+        <form action="{{ route('register.store') }}" method="POST" novalidate>
             @csrf
             <div class="form-group">
                 <label for="name">お名前</label>

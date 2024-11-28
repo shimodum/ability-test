@@ -1,92 +1,149 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>お問い合わせフォーム</title>
-    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f5ede6;
+            padding: 10px 20px;
+            font-family: Arial, sans-serif;
+            border-bottom: 1px solid #ddd;
+        }
+        .header-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b7268;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #8b7268;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .form-group .name-fields {
+            display: flex;
+            gap: 10px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group .name-fields input {
+            width: 50%; /* 姓名を分割 */
+        }
+        .form-group .radio-group {
+            display: flex;
+            gap: 10px;
+        }
+        .form-group .radio-group input {
+            width: auto;
+        }
+        .submit-btn {
+            display: block;
+            margin: 0 auto; /* ボタンを中央に配置 */
+            padding: 10px 20px; /* ボタンサイズを小さく調整 */
+            background-color: #8b7268;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #6c5a4b;
+        }
+    </style>
 </head>
-
 <body>
-    <header>
-        <h1>FashionablyLate</h1>
+    <header class="header">
+        <div class="header-title">FashionablyLate</div>
     </header>
 
-    <main>
-        <h2>Contact</h2>
-
-        <form action="/confirm" method="post">
+    <div class="container">
+        <h1>Contact</h1>
+        <form action="{{ route('contacts.confirm') }}" method="POST">
             @csrf
-            <label for="last_name">お名前</label>
-            <div>
-                <input type="text" id="last_name" name="last_name" placeholder="例: 山田"
-                    value="{{ old('last_name', $inputs['last_name'] ?? '') }}" required>
-                <input type="text" id="first_name" name="first_name" placeholder="例: 太郎"
-                    value="{{ old('first_name', $inputs['first_name'] ?? '') }}" required>
+            <div class="form-group">
+                <label for="name">お名前</label>
+                <div class="name-fields">
+                    <input type="text" id="lastname" name="lastname" placeholder="例: 山田" value="{{ old('lastname') }}">
+                    <input type="text" id="firstname" name="firstname" placeholder="例: 太郎" value="{{ old('firstname') }}">
+                </div>
             </div>
-
-            <label for="gender">性別</label>
-            <div>
-                <input type="radio" id="male" name="gender" value="1"
-                    {{ old('gender', $inputs['gender'] ?? '1') == '1' ? 'checked' : '' }}>
-                <label for="male">男性</label>
-                <input type="radio" id="female" name="gender" value="2"
-                    {{ old('gender', $inputs['gender'] ?? '') == '2' ? 'checked' : '' }}>
-                <label for="female">女性</label>
-                <input type="radio" id="other" name="gender" value="3"
-                    {{ old('gender', $inputs['gender'] ?? '') == '3' ? 'checked' : '' }}>
-                <label for="other">その他</label>
+            <div class="form-group">
+                <label for="gender">性別</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="男性" checked> 男性</label>
+                    <label><input type="radio" name="gender" value="女性"> 女性</label>
+                    <label><input type="radio" name="gender" value="その他"> その他</label>
+                </div>
             </div>
-
-            <label for="email">メールアドレス</label>
-            <input type="email" id="email" name="email" placeholder="例: test@example.com"
-                value="{{ old('email', $inputs['email'] ?? '') }}" required>
-
-            <label for="tel">電話番号</label>
-            <div>
-                <input type="text" id="tel1" name="tel1" placeholder="例: 080"
-                    value="{{ old('tel1', $inputs['tel1'] ?? '') }}" required>
-                <input type="text" id="tel2" name="tel2" placeholder="例: 1234"
-                    value="{{ old('tel2', $inputs['tel2'] ?? '') }}" required>
-                <input type="text" id="tel3" name="tel3" placeholder="例: 5678"
-                    value="{{ old('tel3', $inputs['tel3'] ?? '') }}" required>
+            <div class="form-group">
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
             </div>
-
-            <label for="address">住所</label>
-            <input type="text" id="address" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3"
-                value="{{ old('address', $inputs['address'] ?? '') }}" required>
-
-            <label for="building">建物名</label>
-            <input type="text" id="building" name="building" placeholder="例: 千駄ヶ谷マンション101"
-                value="{{ old('building', $inputs['building'] ?? '') }}">
-
-            <label for="category">お問い合わせの種類</label>
-            <select id="category" name="category" required>
-                <option value="" disabled {{ old('category', $inputs['category'] ?? '') == '' ? 'selected' : '' }}>
-                    選択してください
-                </option>
-                <option value="1" {{ old('category', $inputs['category'] ?? '') == '1' ? 'selected' : '' }}>商品のお届けについて
-                </option>
-                <option value="2" {{ old('category', $inputs['category'] ?? '') == '2' ? 'selected' : '' }}>商品の交換について
-                </option>
-                <option value="3" {{ old('category', $inputs['category'] ?? '') == '3' ? 'selected' : '' }}>商品トラブル
-                </option>
-                <option value="4" {{ old('category', $inputs['category'] ?? '') == '4' ? 'selected' : '' }}>ショップへのお問い合わせ
-                </option>
-                <option value="5" {{ old('category', $inputs['category'] ?? '') == '5' ? 'selected' : '' }}>その他
-                </option>
-            </select>
-
-            <label for="message">お問い合わせ内容</label>
-            <textarea id="message" name="message"
-                placeholder="お問い合わせ内容をご記入ください">{{ old('message', $inputs['message'] ?? '') }}</textarea>
-
-            <button type="submit">確認画面</button>
+            <div class="form-group">
+                <label for="phone">電話番号</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" name="phone1" placeholder="080" maxlength="3" style="width: 30%;">
+                    <input type="text" name="phone2" placeholder="1234" maxlength="4" style="width: 30%;">
+                    <input type="text" name="phone3" placeholder="5678" maxlength="4" style="width: 30%;">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">住所</label>
+                <input type="text" id="address" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}">
+            </div>
+            <div class="form-group">
+                <label for="building">建物名</label>
+                <input type="text" id="building" name="building" placeholder="例: 千駄ヶ谷マンション101" value="{{ old('building') }}">
+            </div>
+            <div class="form-group">
+                <label for="category">お問い合わせの種類</label>
+                <select id="category" name="category">
+                    <option value="">選択してください</option>
+                    <option value="商品のお届けについて">商品のお届けについて</option>
+                    <option value="商品の交換について">商品の交換について</option>
+                    <option value="商品トラブル">商品トラブル</option>
+                    <option value="ショップへのお問い合わせ">ショップへのお問い合わせ</option>
+                    <option value="その他">その他</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="content">お問い合わせ内容</label>
+                <textarea id="content" name="content" rows="5" placeholder="お問い合わせ内容をご記載ください">{{ old('content') }}</textarea>
+            </div>
+            <button type="submit" class="submit-btn">確認画面</button>
         </form>
-    </main>
+    </div>
 </body>
-
 </html>
