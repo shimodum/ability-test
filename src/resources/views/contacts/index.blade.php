@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>お問い合わせフォーム</title>
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <style>
         .header {
             display: flex;
@@ -111,14 +112,26 @@
                 <label for="email">メールアドレス</label>
                 <input type="email" id="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
             </div>
-            <div class="form-group">
-                <label for="phone">電話番号</label>
-                <div style="display: flex; gap: 10px;">
-                    <input type="text" name="phone1" placeholder="080" maxlength="3" style="width: 30%;">
-                    <input type="text" name="phone2" placeholder="1234" maxlength="4" style="width: 30%;">
-                    <input type="text" name="phone3" placeholder="5678" maxlength="4" style="width: 30%;">
-                </div>
-            </div>
+<div class="form-group">
+    <label for="tel">電話番号 <span class="required"></span></label>
+    <div class="tel-container">
+        <input type="text" id="tel1" name="tel1" placeholder=" 080" value="{{ old('tel1') }}" maxlength="3">
+        <span class="hyphen">-</span>
+        <input type="text" id="tel2" name="tel2" placeholder=" 1234" value="{{ old('tel2') }}" maxlength="4">
+        <span class="hyphen">-</span>
+        <input type="text" id="tel3" name="tel3" placeholder=" 5678" value="{{ old('tel3') }}" maxlength="4">
+    </div>
+    @error('tel1')
+    <div class="error">{{ $message }}</div>
+        @enderror
+        @error('tel2')
+        <div class="error">{{ $message }}</div>
+        @enderror
+        @error('tel3')
+        <div class="error">{{ $message }}</div>
+        @enderror
+    </div>
+
             <div class="form-group">
                 <label for="address">住所</label>
                 <input type="text" id="address" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}">

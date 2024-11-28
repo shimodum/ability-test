@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -16,15 +17,10 @@ class ContactController extends Controller
     public function confirm(Request $request)
     {
         // バリデーションを記述（後ほど詳細設定可能）
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|digits_between:10,11', // 10桁または11桁の半角数字
-            'content' => 'required|string|max:120',
-        ]);
+        $data = $request->all();
 
         // 確認画面にデータを渡す
-        return view('contacts.confirm', ['data' => $validated]);
+        return view('contacts.confirm', ['data' => $data]);
     }
 
     // サンクスページ

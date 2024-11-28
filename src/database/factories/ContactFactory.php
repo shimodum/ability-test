@@ -7,23 +7,20 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContactFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+    protected $model = Contact::class;
+
     public function definition()
     {
         return [
-            'category_id' => \App\Models\Category::factory(),
+            'category_id' => $this->faker->numberBetween(1, 5), // categoriesテーブルのID範囲
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
-            'gender' => $this->faker->randomElement([1, 2, 3]),
-            'email' => $this->faker->safeEmail,
-            'tel' => $this->faker->numerify('080#######'),
+            'gender' => $this->faker->numberBetween(1, 3), // 1:男性, 2:女性, 3:その他
+            'email' => $this->faker->unique()->safeEmail,
+            'tel' => $this->faker->numerify('##########'), // ハイフンなしの電話番号
             'address' => $this->faker->address,
             'building' => $this->faker->optional()->secondaryAddress,
-            'detail' => $this->faker->text(120),
+            'detail' => $this->faker->realText(120),
             'created_at' => now(),
             'updated_at' => now(),
         ];
