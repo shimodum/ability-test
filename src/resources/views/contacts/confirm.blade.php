@@ -20,35 +20,35 @@
             <table>
                 <tr>
                     <th>お名前</th>
-                    <td>{{ $inputs['lastname'] }} {{ $inputs['firstname'] }}</td>
+                    <td>{{ $inputs['lastname'] ?? '' }} {{ $inputs['firstname'] ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>性別</th>
-                    <td>{{ $inputs['gender'] }}</td>
+                    <td>{{ $inputs['gender'] ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>メールアドレス</th>
-                    <td>{{ $inputs['email'] }}</td>
+                    <td>{{ $inputs['email'] ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>電話番号</th>
-                    <td>{{ $inputs['tel1'] }}-{{ $inputs['tel2'] }}-{{ $inputs['tel3'] }}</td>
+                    <td>{{ $inputs['tel1'] ?? '' }}-{{ $inputs['tel2'] ?? '' }}-{{ $inputs['tel3'] ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>住所</th>
-                    <td>{{ $inputs['address'] }}</td>
+                    <td>{{ $inputs['address'] ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>建物名</th>
-                    <td>{{ $inputs['building'] }}</td>
+                    <td>{{ $inputs['building'] ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>お問い合わせの種類</th>
-                    <td>{{ $category }}</td>
+                    <td>{{ $inputs['category'] ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>お問い合わせ内容</th>
-                    <td>{{ $inputs['content'] }}</td>
+                    <td>{{ $inputs['content'] ?? '' }}</td>
                 </tr>
             </table>
             <button type="submit">送信</button>
