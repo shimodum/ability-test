@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 // お問い合わせフォーム入力ページ
 Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
@@ -22,7 +23,11 @@ Route::get('/admin', function () {
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-// ログインページ
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// ログインページ（表示用）
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+// ログイン処理
+Route::post('/login', [LoginController::class, 'login']);
+
+// ログアウト処理
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

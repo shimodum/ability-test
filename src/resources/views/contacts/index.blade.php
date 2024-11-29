@@ -18,7 +18,6 @@
             align-items: center;
             background-color: #f5ede6;
             padding: 10px 20px;
-            font-family: Arial, sans-serif;
             border-bottom: 1px solid #ddd;
         }
 
@@ -46,15 +45,13 @@
 
         form {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr;
             row-gap: 15px;
-            column-gap: 20px;
         }
 
         label {
             font-size: 14px;
             color: #333;
-            align-self: center;
         }
 
         input,
@@ -69,17 +66,18 @@
 
         .name-fields {
             display: flex;
-            gap: 10px;
+            gap: 15px; /* フィールド間のスペースを調整 */
         }
 
-        .name-fields input {
+        .name-fields div {
+            display: flex;
+            flex-direction: column;
             flex: 1;
         }
 
         .radio-group {
             display: flex;
             gap: 10px;
-            align-items: center;
         }
 
         .tel-container {
@@ -93,7 +91,6 @@
         }
 
         .submit-btn {
-            grid-column: span 2;
             justify-self: center;
             padding: 10px 20px;
             background-color: #8b7268;
@@ -109,9 +106,9 @@
         }
 
         .error {
-            grid-column: span 2;
             color: red;
             font-size: 12px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -125,23 +122,29 @@
         <h1>Contact</h1>
         <form action="{{ route('contacts.confirm') }}" method="POST" novalidate>
             @csrf
-            <label for="name">お名前</label>
-            <div class="name-fields">
-                <input type="text" id="lastname" name="lastname" placeholder="例: 山田" value="{{ old('lastname') }}">
-                <input type="text" id="firstname" name="firstname" placeholder="例: 太郎" value="{{ old('firstname') }}">
+            <div class="form-group">
+                <label for="name">お名前</label>
+                <div class="name-fields">
+                    <div>
+                        <input type="text" id="lastname" name="lastname" placeholder="例: 山田" value="{{ old('lastname') }}">
+                        @error('lastname')
+                        <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div>
+                        <input type="text" id="firstname" name="firstname" placeholder="例: 太郎" value="{{ old('firstname') }}">
+                        @error('firstname')
+                        <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             </div>
-            @error('lastname')
-            <div class="error">{{ $message }}</div>
-            @enderror
-            @error('firstname')
-            <div class="error">{{ $message }}</div>
-            @enderror
 
             <label for="gender">性別</label>
             <div class="radio-group">
-                <label><input type="radio" name="gender" value="男性" checked> 男性</label>
-                <label><input type="radio" name="gender" value="女性"> 女性</label>
-                <label><input type="radio" name="gender" value="その他"> その他</label>
+                <label><input type="radio" name="gender" value="男性" {{ old('gender', '男性') == '男性' ? 'checked' : '' }}> 男性</label>
+                <label><input type="radio" name="gender" value="女性" {{ old('gender') == '女性' ? 'checked' : '' }}> 女性</label>
+                <label><input type="radio" name="gender" value="その他" {{ old('gender') == 'その他' ? 'checked' : '' }}> その他</label>
             </div>
             @error('gender')
             <div class="error">{{ $message }}</div>
@@ -162,13 +165,7 @@
                 <input type="text" id="tel3" name="tel3" placeholder="5678" value="{{ old('tel3') }}" maxlength="4">
             </div>
             @error('tel1')
-            <div class="error">{{ $message }}</div>
-            @enderror
-            @error('tel2')
-            <div class="error">{{ $message }}</div>
-            @enderror
-            @error('tel3')
-            <div class="error">{{ $message }}</div>
+            <div class="error">電話番号を入力してください。</div>
             @enderror
 
             <label for="address">住所</label>
