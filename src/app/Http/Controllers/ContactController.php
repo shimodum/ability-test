@@ -16,12 +16,19 @@ class ContactController extends Controller
     // 確認ページ
     public function confirm(Request $request)
     {
-        // バリデーションを記述（後ほど詳細設定可能）
-        $data = $request->all();
+        // フォームから送信された全データを取得
+        $inputs = $request->all();
 
-        // 確認画面にデータを渡す
-        return view('contacts.confirm', ['data' => $data]);
+        // 確認画面で使用するデータを整える
+        $categoryName = $inputs['category']; // 選択したカテゴリ名を取得
+
+        // ビューにデータを渡す
+        return view('contacts.confirm', [
+            'inputs' => $inputs,
+            'category' => $categoryName,
+        ]);
     }
+
 
     // サンクスページ
     public function thanks()

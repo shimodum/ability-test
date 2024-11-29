@@ -15,17 +15,16 @@
 
     <main>
         <h2>Confirm</h2>
-        {{ dd(request()->method()) }}
-        <form action="{{ url('/store') }}" method="post">
+        <form action="{{ route('contacts.thanks') }}" method="post">
             @csrf
             <table>
                 <tr>
                     <th>お名前</th>
-                    <td>{{ $inputs['last_name'] }} {{ $inputs['first_name'] }}</td>
+                    <td>{{ $inputs['lastname'] }} {{ $inputs['firstname'] }}</td>
                 </tr>
                 <tr>
                     <th>性別</th>
-                    <td>{{ $genders[$inputs['gender']] }}</td>
+                    <td>{{ $inputs['gender'] }}</td>
                 </tr>
                 <tr>
                     <th>メールアドレス</th>
@@ -49,14 +48,14 @@
                 </tr>
                 <tr>
                     <th>お問い合わせ内容</th>
-                    <td>{{ $inputs['message'] }}</td>
+                    <td>{{ $inputs['content'] }}</td>
                 </tr>
             </table>
             <button type="submit">送信</button>
         </form>
 
         <!-- 修正リンク -->
-        <a href="{{ url('/') }}?{{ http_build_query($inputs) }}" style="text-decoration: underline; color: blue;">修正</a>
+        <a href="{{ route('contacts.index') }}" style="text-decoration: underline; color: blue;">修正</a>
     </main>
 </body>
 

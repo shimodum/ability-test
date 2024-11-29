@@ -142,14 +142,15 @@
             </div>
             <div class="form-group">
                 <label for="category">お問い合わせの種類</label>
-                <select id="category" name="category">
-                    <option value="">選択してください</option>
-                    <option value="商品のお届けについて">商品のお届けについて</option>
-                    <option value="商品の交換について">商品の交換について</option>
-                    <option value="商品トラブル">商品トラブル</option>
-                    <option value="ショップへのお問い合わせ">ショップへのお問い合わせ</option>
-                    <option value="その他">その他</option>
-                </select>
+            <select id="category" name="category">
+                <option value="">選択してください</option>
+                <option value="商品のお届けについて">商品のお届けについて</option>
+                <option value="商品の交換について">商品の交換について</option>
+                <option value="商品トラブル">商品トラブル</option>
+                <option value="ショップへのお問い合わせ">ショップへのお問い合わせ</option>
+                <option value="その他">その他</option>
+            </select>
+
             </div>
             <div class="form-group">
                 <label for="content">お問い合わせ内容</label>
