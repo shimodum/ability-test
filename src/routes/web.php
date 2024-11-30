@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
 
 // お問い合わせフォーム入力ページ
 Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
@@ -15,9 +16,12 @@ Route::post('/confirm', [ContactController::class, 'confirm'])->name('contacts.c
 Route::post('/thanks', [ContactController::class, 'thanks'])->name('contacts.thanks');
 
 // 管理画面
-Route::get('/admin', function () {
-    return '管理画面';
-})->name('admin')->middleware('auth');
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/search', [AdminController::class, 'search'])->name('search');
+    Route::get('/export', [AdminController::class, 'export'])->name('export');
+    Route::get('/{id}', [AdminController::class, 'show'])->name('show');
+});
 
 // ユーザー登録ページ
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
