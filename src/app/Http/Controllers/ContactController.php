@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
+use App\Models\Contact;
+use App\Models\Category;
 
 class ContactController extends Controller
 {

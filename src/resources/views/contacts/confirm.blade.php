@@ -44,11 +44,11 @@
                 </tr>
                 <tr>
                     <th>お問い合わせの種類</th>
-                    <td>{{ $inputs['category'] ?? '' }}</td>
+                    <td>{{ $inputs['category_id'] ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>お問い合わせ内容</th>
-                    <td>{{ $inputs['content'] ?? '' }}</td>
+                    <td>{{ $inputs['detail'] ?? '' }}</td>
                 </tr>
             </table>
             <button type="submit">送信</button>

@@ -180,22 +180,22 @@
             <div class="error">{{ $message }}</div>
             @enderror
 
-            <label for="category">お問い合わせの種類</label>
-            <select id="category" name="category">
+            <label for="category_id">お問い合わせの種類</label>
+            <select id="category_id" name="category_id">
                 <option value="">選択してください</option>
-                <option value="商品のお届けについて" {{ old('category') == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
-                <option value="商品の交換について" {{ old('category') == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
-                <option value="商品トラブル" {{ old('category') == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
-                <option value="ショップへのお問い合わせ" {{ old('category') == 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
-                <option value="その他" {{ old('category') == 'その他' ? 'selected' : '' }}>その他</option>
+                <option value="商品のお届けについて" {{ old('category_id') == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
+                <option value="商品の交換について" {{ old('category_id') == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
+                <option value="商品トラブル" {{ old('category_id') == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
+                <option value="ショップへのお問い合わせ" {{ old('category_id') == 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
+                <option value="その他" {{ old('category_id') == 'その他' ? 'selected' : '' }}>その他</option>
             </select>
-            @error('category')
+            @error('category_id')
             <div class="error">{{ $message }}</div>
             @enderror
 
-            <label for="content">お問い合わせ内容</label>
-            <textarea id="content" name="content" rows="5" placeholder="お問い合わせ内容をご記載ください">{{ old('content') }}</textarea>
-            @error('content')
+            <label for="detail">お問い合わせ内容</label>
+            <textarea id="detail" name="detail" rows="5" placeholder="お問い合わせ内容をご記載ください">{{ old('detail') }}</textarea>
+            @error('detail')
             <div class="error">{{ $message }}</div>
             @enderror
 
