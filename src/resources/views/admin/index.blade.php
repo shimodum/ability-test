@@ -183,9 +183,7 @@
 
         <!-- ページネーション -->
         <div class="pagination">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
+            {{ $contacts->links() }}
         </div>
 
         <button class="export-button">エクスポート</button>
@@ -201,14 +199,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>山田 太郎</td>
-                    <td>男性</td>
-                    <td>test@example.com</td>
-                    <td>商品の交換について</td>
-                    <td><button class="details-button">詳細</button></td>
-                </tr>
-                <!-- 繰り返し部分 -->
+                @foreach ($contacts as $contact)
+                    <tr>
+                        <td>{{ $contact->name }}</td>
+                        <td>{{ $contact->gender }}</td>
+                        <td>{{ $contact->email }}</td>
+                        <td>{{ $contact->category->name ?? '未分類' }}</td>
+                        <td><a href="{{ route('admin.show', $contact->id) }}" class="details-button">詳細</a></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </main>
