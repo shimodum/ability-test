@@ -85,35 +85,32 @@
 
         .pagination {
             display: flex;
-            justify-content: flex-end; /* 右端に配置 */
-            margin: 1rem 0;
-            gap: 0.5rem;
+            justify-content: flex-end;
+            margin-top: 20px;
         }
 
-        .pagination a {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ccc;
-            text-decoration: none;
+        .pagination .page-item {
+            list-style: none;
+        }
+
+        .pagination .page-item .page-link {
             color: #5e463c;
+            border: 1px solid #ddd;
             border-radius: 4px;
+            margin: 0 5px;
+            padding: 8px 12px;
+            text-decoration: none;
         }
 
-        .pagination a:hover {
+        .pagination .page-item .page-link:hover {
             background-color: #f9f9f9;
+            color: #4b3a30;
         }
 
-        .export-button {
+        .pagination .page-item.active .page-link {
             background-color: #5e463c;
             color: white;
-            padding: 0.5rem 1rem;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 1rem;
-        }
-
-        .export-button:hover {
-            background-color: #4b3a30;
         }
 
         table {
@@ -141,6 +138,8 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            text-align: center;
+            display: inline-block;
         }
 
         .details-button:hover {
@@ -154,12 +153,9 @@
         <h1>FashionablyLate</h1>
         <form action="{{ route('logout') }}" method="POST" style="display: inline;">
             @csrf
-            <button type="submit" class="logout">
-                logout
-            </button>
+            <button type="submit" class="logout">logout</button>
         </form>
     </header>
-
 
     <main>
         <h2>Admin</h2>
@@ -183,7 +179,7 @@
 
         <!-- ページネーション -->
         <div class="pagination">
-            {{ $contacts->links() }}
+            {{ $contacts->links('pagination::bootstrap-4') }}
         </div>
 
         <button class="export-button">エクスポート</button>
@@ -200,13 +196,13 @@
             </thead>
             <tbody>
                 @foreach ($contacts as $contact)
-                    <tr>
-                        <td>{{ $contact->name }}</td>
-                        <td>{{ $contact->gender }}</td>
-                        <td>{{ $contact->email }}</td>
-                        <td>{{ $contact->category->name ?? '未分類' }}</td>
-                        <td><a href="{{ route('admin.show', $contact->id) }}" class="details-button">詳細</a></td>
-                    </tr>
+                <tr>
+                    <td>{{ $contact->name }}</td>
+                    <td>{{ $contact->gender }}</td>
+                    <td>{{ $contact->email }}</td>
+                    <td>{{ $contact->category->content }}</td>
+                    <td><button class="details-button">詳細</button></td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
