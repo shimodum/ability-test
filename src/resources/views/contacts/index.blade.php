@@ -9,38 +9,39 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #f5ede6;
-            padding: 10px 20px;
+        header {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            text-align: center;
             border-bottom: 1px solid #ddd;
         }
 
-        .header-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #8b7268;
+        header h1 {
+            font-size: 1.8rem;
+            color: #5e463c;
+            margin: 0;
         }
 
         .container {
             max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            font-size: 24px;
-            color: #8b7268;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #5e463c;
             text-align: center;
+            margin-bottom: 1.5rem;
         }
 
         form {
@@ -57,73 +58,67 @@
         input,
         select,
         textarea {
-            padding: 10px;
+            padding: 0.75rem;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 1rem;
             width: 100%;
         }
 
         .name-fields {
             display: flex;
-            gap: 15px; /* フィールド間のスペースを調整 */
+            gap: 1rem; /* フィールド間のスペースを追加 */
         }
 
         .name-fields div {
-            display: flex;
-            flex-direction: column;
             flex: 1;
         }
 
         .radio-group {
             display: flex;
-            gap: 10px;
+            gap: 1rem;
         }
 
         .tel-container {
-            display: flex;
-            gap: 5px;
+            display: flex; /* 横並びにする */
+            gap: 0.5rem; /* 各フィールド間のスペース */
             align-items: center;
         }
 
-        .tel-container span {
-            margin: 0 5px;
-        }
-
         .submit-btn {
-            justify-self: center;
-            padding: 10px 20px;
-            background-color: #8b7268;
+            padding: 0.75rem;
+            background-color: #5e463c;
             color: white;
-            font-size: 14px;
+            font-size: 1rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
+            text-align: center;
         }
 
         .submit-btn:hover {
-            background-color: #6c5a4b;
+            background-color: #4b3a30;
         }
 
         .error {
             color: red;
-            font-size: 12px;
-            margin-top: 5px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
         }
     </style>
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-title">FashionablyLate</div>
+    <header>
+        <h1>FashionablyLate</h1>
     </header>
 
     <div class="container">
         <h1>Contact</h1>
         <form action="{{ route('contacts.confirm') }}" method="POST" novalidate>
             @csrf
-            <div class="form-group">
-                <label for="name">お名前</label>
+            <div>
+                <label for="lastname">お名前</label>
                 <div class="name-fields">
                     <div>
                         <input type="text" id="lastname" name="lastname" placeholder="例: 山田" value="{{ old('lastname') }}">
