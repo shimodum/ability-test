@@ -20,6 +20,7 @@ class ContactController extends Controller
     {
         $validatedData = $request->validated(); // バリデーション済みデータを取得
 
+        $inputs = $request->all();
         return view('contacts.confirm', ['inputs' => $validatedData]);
     }
 
