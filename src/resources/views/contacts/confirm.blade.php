@@ -3,9 +3,103 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>お問い合わせ内容の確認</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: #5e463c;
+            margin: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #5e463c;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f5ede6;
+            color: #5e463c;
+            width: 30%;
+        }
+
+        td {
+            color: #333;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #5e463c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #4b3a30;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .edit-link {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            background-color: #e3e3e3;
+            color: #5e463c;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .edit-link:hover {
+            background-color: #d3d3d3;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,11 +145,11 @@
                     <td>{{ $inputs['detail'] ?? '' }}</td>
                 </tr>
             </table>
-            <button type="submit">送信</button>
+            <div class="actions">
+                <button type="submit">送信</button>
+                <a href="{{ route('contacts.index') }}" class="edit-link">修正</a>
+            </div>
         </form>
-
-        <!-- 修正リンク -->
-        <a href="{{ route('contacts.index') }}" style="text-decoration: underline; color: blue;">修正</a>
     </main>
 </body>
 
