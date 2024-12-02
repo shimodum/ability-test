@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -78,6 +79,12 @@
             border-radius: 4px;
         }
 
+        .form-container .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
         .form-container button {
             width: 100%;
             padding: 0.5rem;
@@ -97,17 +104,26 @@
 <body>
     <header>
         <h1>FashionablyLate</h1>
-        <a href="/register" class="register-link">register</a>
+        <a href="{{ route('register.index') }}" class="register-link">register</a>
     </header>
 
     <main>
         <div class="form-container">
             <h2>Login</h2>
-            <form>
+            <form action="{{ route('login') }}" method="POST" novalidate>
+                @csrf
                 <label for="email">メールアドレス</label>
-                <input type="email" id="email" placeholder="例: test@example.com">
+                <input type="email" id="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
+                @error('email')
+                <div class="error">{{ $message }}</div>
+                @enderror
+
                 <label for="password">パスワード</label>
-                <input type="password" id="password" placeholder="例: coachtech1106">
+                <input type="password" id="password" name="password" placeholder="例: coachtech1106">
+                @error('password')
+                <div class="error">{{ $message }}</div>
+                @enderror
+
                 <button type="submit">ログイン</button>
             </form>
         </div>

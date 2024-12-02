@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Register</title>
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -78,6 +79,12 @@
             border-radius: 4px;
         }
 
+        .form-container .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
         .form-container button {
             width: 100%;
             padding: 0.5rem;
@@ -97,19 +104,32 @@
 <body>
     <header>
         <h1>FashionablyLate</h1>
-        <a href="/login" class="login-link">login</a>
+        <a href="{{ route('login') }}" class="login-link">login</a>
     </header>
 
     <main>
         <div class="form-container">
             <h2>Register</h2>
-            <form>
+            <form action="{{ route('register.store') }}" method="POST" novalidate>
+                @csrf
                 <label for="name">お名前</label>
-                <input type="text" id="name" placeholder="例: 山田 太郎">
+                <input type="text" id="name" name="name" placeholder="例: 山田 太郎" value="{{ old('name') }}">
+                @error('name')
+                <div class="error">{{ $message }}</div>
+                @enderror
+
                 <label for="email">メールアドレス</label>
-                <input type="email" id="email" placeholder="例: test@example.com">
+                <input type="email" id="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
+                @error('email')
+                <div class="error">{{ $message }}</div>
+                @enderror
+
                 <label for="password">パスワード</label>
-                <input type="password" id="password" placeholder="例: coachtech1106">
+                <input type="password" id="password" name="password" placeholder="例: coachtech1106">
+                @error('password')
+                <div class="error">{{ $message }}</div>
+                @enderror
+
                 <button type="submit">登録</button>
             </form>
         </div>
