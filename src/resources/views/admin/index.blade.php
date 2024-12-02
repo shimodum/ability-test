@@ -85,7 +85,7 @@
 
         .pagination {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end; /* 右端に配置 */
             margin: 1rem 0;
             gap: 0.5rem;
         }
@@ -175,7 +175,7 @@
             <button>リセット</button>
         </div>
 
-        <!-- ページネーションを検索ボタンの下に配置 -->
+        <!-- ページネーションを右端に配置 -->
         <div class="pagination">
             <a href="#">1</a>
             <a href="#">2</a>
