@@ -3,39 +3,115 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ログイン</title>
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: #5e463c;
+            margin: 0;
+        }
+
+        .register-link {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #e3e3e3;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #5e463c;
+            border: 1px solid #ccc;
+        }
+
+        .register-link:hover {
+            background-color: #d3d3d3;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #5e463c;
+            margin-bottom: 1rem;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #5e463c;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #5e463c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #4b3a30;
+        }
+    </style>
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-title">FashionablyLate</div>
-        <a href="{{ route('register.index') }}" class="header-login">register</a>
+    <header>
+        <h1>FashionablyLate</h1>
+        <a href="/register" class="register-link">register</a>
     </header>
 
-    <div class="container">
-        <h1>Login</h1>
-        <form action="{{ route('login') }}" method="POST" novalidate>
-            @csrf
-            <div class="form-group">
+    <main>
+        <div class="form-container">
+            <h2>Login</h2>
+            <form>
                 <label for="email">メールアドレス</label>
-                <input type="email" id="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
-                @error('email')
-                <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
+                <input type="email" id="email" placeholder="例: test@example.com">
                 <label for="password">パスワード</label>
-                <input type="password" id="password" name="password" placeholder="例: coachtech1106">
-                @error('password')
-                <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <button type="submit">ログイン</button>
-        </form>
-    </div>
+                <input type="password" id="password" placeholder="例: coachtech1106">
+                <button type="submit">ログイン</button>
+            </form>
+        </div>
+    </main>
 </body>
 
 </html>
