@@ -20,7 +20,7 @@ class LoginController extends Controller
         // ログイン処理
         if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
             // ログイン成功時
-            return redirect()->intended('dashboard'); // ダッシュボードや別のページへリダイレクト
+            return redirect()->route('admin.index');
         }
 
         // ログイン失敗時
