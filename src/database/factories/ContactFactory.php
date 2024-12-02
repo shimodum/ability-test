@@ -12,12 +12,12 @@ class ContactFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => $this->faker->numberBetween(1, 5), // categoriesテーブルのID範囲
+            'category_id' => $this->faker->numberBetween(1, 5),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'gender' => $this->faker->numberBetween(1, 3), // 1:男性, 2:女性, 3:その他
             'email' => $this->faker->unique()->safeEmail,
-            'tel' => $this->faker->numerify('##########'), // ハイフンなしの電話番号
+            'tel' => $this->faker->numerify('##########'),
             'address' => $this->faker->address,
             'building' => $this->faker->optional()->secondaryAddress,
             'detail' => $this->faker->realText(120),

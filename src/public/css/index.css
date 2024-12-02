@@ -5,7 +5,6 @@
 
 .tel-container input[type="text"] {
     width: 60px;
-    /* 各フィールドの幅 */
     text-align: center;
     margin-right: 5px;
 }
@@ -32,10 +31,8 @@
     margin-top: 5px;
 }
 
-/* 性別ラジオボタンの横並び */
 .radio-group {
     display: flex;
     gap: 20px;
-    /* ボタン間の間隔 */
     align-items: center;
 }

@@ -67,7 +67,7 @@
 
         .name-fields {
             display: flex;
-            gap: 1rem; /* フィールド間のスペースを追加 */
+            gap: 1rem;
         }
 
         .name-fields div {
@@ -80,8 +80,8 @@
         }
 
         .tel-container {
-            display: flex; /* 横並びにする */
-            gap: 0.5rem; /* 各フィールド間のスペース */
+            display: flex;
+            gap: 0.5rem;
             align-items: center;
         }
 
