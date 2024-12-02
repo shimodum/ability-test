@@ -153,13 +153,19 @@
 
             <label for="tel">電話番号</label>
             <div class="tel-container">
-                <input type="text" id="tel1" name="tel1" placeholder="080" value="{{ old('tel1') }}" maxlength="3">
+                <input type="text" id="tel1" name="tel1" placeholder="080" value="{{ old('tel1') }}" maxlength="5">
                 <span>-</span>
-                <input type="text" id="tel2" name="tel2" placeholder="1234" value="{{ old('tel2') }}" maxlength="4">
+                <input type="text" id="tel2" name="tel2" placeholder="1234" value="{{ old('tel2') }}" maxlength="5">
                 <span>-</span>
-                <input type="text" id="tel3" name="tel3" placeholder="5678" value="{{ old('tel3') }}" maxlength="4">
+                <input type="text" id="tel3" name="tel3" placeholder="5678" value="{{ old('tel3') }}" maxlength="5">
             </div>
             @error('tel1')
+            <div class="error">電話番号を入力してください。</div>
+            @enderror
+            @error('tel2')
+            <div class="error">電話番号を入力してください。</div>
+            @enderror
+            @error('tel3')
             <div class="error">電話番号を入力してください。</div>
             @enderror
 
