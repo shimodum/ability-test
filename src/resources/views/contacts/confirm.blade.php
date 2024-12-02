@@ -87,17 +87,17 @@
 
         .edit-link {
             display: inline-block;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            background-color: #e3e3e3;
-            color: #5e463c;
-            border-radius: 4px;
-            border: 1px solid #ccc;
+            text-decoration: underline; /* 下線を表示 */
+            color: #5e463c; /* テキストカラーを統一 */
             font-size: 1rem;
+            padding: 0.75rem 1rem; /* ボタンと高さを揃える */
+            background: none; /* 背景色をなしにする */
+            border: none; /* ボーダーを消す */
+            cursor: pointer; /* ポインタを指し示す */
         }
 
         .edit-link:hover {
-            background-color: #d3d3d3;
+            color: #4b3a30; /* マウスホバー時に色を変更 */
         }
     </style>
 </head>
