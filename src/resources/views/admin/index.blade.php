@@ -152,8 +152,14 @@
 <body>
     <header>
         <h1>FashionablyLate</h1>
-        <a href="#" class="logout">logout</a>
+        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+            @csrf
+            <button type="submit" class="logout">
+                logout
+            </button>
+        </form>
     </header>
+
 
     <main>
         <h2>Admin</h2>
@@ -175,7 +181,7 @@
             <button>リセット</button>
         </div>
 
-        <!-- ページネーションを右端に配置 -->
+        <!-- ページネーション -->
         <div class="pagination">
             <a href="#">1</a>
             <a href="#">2</a>
