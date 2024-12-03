@@ -81,8 +81,13 @@
 
         .tel-container {
             display: flex;
-            gap: 0.5rem;
             align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tel-container .hyphen {
+            font-size: 1.2rem;
+            color: #333;
         }
 
         .submit-btn {
@@ -153,21 +158,27 @@
 
             <label for="tel">電話番号</label>
             <div class="tel-container">
-                <input type="text" id="tel1" name="tel1" placeholder="080" value="{{ old('tel1') }}" maxlength="5">
-                <span>-</span>
-                <input type="text" id="tel2" name="tel2" placeholder="1234" value="{{ old('tel2') }}" maxlength="5">
-                <span>-</span>
-                <input type="text" id="tel3" name="tel3" placeholder="5678" value="{{ old('tel3') }}" maxlength="5">
+                <div>
+                    <input type="text" id="tel1" name="tel1" placeholder="080" value="{{ old('tel1') }}" maxlength="5">
+                    @error('tel1')
+                    <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+                <span class="hyphen">-</span>
+                <div>
+                    <input type="text" id="tel2" name="tel2" placeholder="1234" value="{{ old('tel2') }}" maxlength="5">
+                    @error('tel2')
+                    <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+                <span class="hyphen">-</span>
+                <div>
+                    <input type="text" id="tel3" name="tel3" placeholder="5678" value="{{ old('tel3') }}" maxlength="5">
+                    @error('tel3')
+                    <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
-            @error('tel1')
-            <div class="error">電話番号を入力してください。</div>
-            @enderror
-            @error('tel2')
-            <div class="error">電話番号を入力してください。</div>
-            @enderror
-            @error('tel3')
-            <div class="error">電話番号を入力してください。</div>
-            @enderror
 
             <label for="address">住所</label>
             <input type="text" id="address" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}">
